@@ -1,4 +1,5 @@
 import 'package:analytics_page2/pathconstants.dart';
+import 'package:analytics_page2/record_page.dart';
 import 'package:analytics_page2/textconstants.dart';
 import 'package:flutter/material.dart';
 
@@ -35,6 +36,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
             height: 30,
           ),
           _createMetrics(context),
+          _knowYourBMI(),
         ],
       ),
     );
@@ -59,18 +61,21 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
 
   Widget _createMetrics(BuildContext context) {
     int water = 0;
+    int weight = 0;
+    double height = 0;
 
     void incrementCounter() {
-    setState(() {
-      water++;
-    });
-  }
+      setState(() {
+        water++;
+      });
+    }
 
-  void decrementCounter() {
-    setState(() {
-      water--;
-    });
-  }
+    void decrementCounter() {
+      setState(() {
+        water--;
+      });
+    }
+
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Container(
         padding: const EdgeInsets.all(8),
@@ -90,41 +95,130 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 5,),
+                const SizedBox(
+                  height: 5,
+                ),
                 Text(
                   '$water',
                   style: const TextStyle(
-                    fontSize: 15,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w200
-                  ),
+                      fontSize: 15,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w200),
                 )
               ],
             ),
-            const SizedBox(width: 100,),
+            const SizedBox(
+              width: 100,
+            ),
             Material(
               color: Colors.transparent,
               child: InkWell(
                 borderRadius: BorderRadius.circular(30),
                 onTap: incrementCounter,
-                child: const Icon(Icons.add,
-                size: 20, color: Colors.white,),
+                child: const Icon(
+                  Icons.add,
+                  size: 20,
+                  color: Colors.white,
+                ),
               ),
             ),
-            const SizedBox(width: 10,),
+            const SizedBox(
+              width: 10,
+            ),
             Material(
               color: Colors.transparent,
               child: InkWell(
                 borderRadius: BorderRadius.circular(30),
                 onTap: decrementCounter,
-                child: const Icon(Icons.remove,
-                size: 20, color: Colors.white,),
+                child: const Icon(
+                  Icons.remove,
+                  size: 20,
+                  color: Colors.white,
+                ),
               ),
             )
           ],
         ),
       ),
+      const SizedBox(
+        height: 10,
+      ),
+      Container(
+        padding: const EdgeInsets.all(8),
+        width: 300,
+        height: 70,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10), color: Colors.black38),
+        child: Row(
+          children: [
+            Column(
+              children: [
+                const Text(
+                  TextConstants.body,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  '$height',
+                  style: const TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w200),
+                )
+              ],
+            ),
+            const SizedBox(
+              width: 180,
+            ),
+            Container(
+              width: 80,
+              height: 30,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(15)),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(10),
+                  child: const Center(
+                    child: Text(
+                      TextConstants.record,
+                      style:
+                          TextStyle(fontSize: 11, fontWeight: FontWeight.w200),
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const RecordPage()));
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     ]);
+  }
+
+  Widget _knowYourBMI() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        TextButton(
+          onPressed: () {},
+          child: const Text(
+            TextConstants.knowYorBMI,
+            style: TextStyle(
+                fontSize: 10, fontWeight: FontWeight.w500, color: Colors.black),
+          ),
+        )
+      ],
+    );
   }
 }
 

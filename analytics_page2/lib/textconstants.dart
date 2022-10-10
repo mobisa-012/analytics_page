@@ -8,4 +8,6 @@ class TextConstants {
   static const String weight = 'Weight';
   static const String knowYorBMI = 'Know your BMI';
   static const String water = 'Water';
+  static const String body = 'Body';
+  static const String record = 'Record';
 }
