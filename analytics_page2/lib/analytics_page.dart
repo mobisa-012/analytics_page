@@ -58,52 +58,73 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
   }
 
   Widget _createMetrics(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch, 
-      children: [
-      Container(
-        padding: const EdgeInsets.all(10),
-        width: screenWidth,
-        height: 70,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _createHeightField(context),
-            const SizedBox(
-              height: 5,
-            ),
-            //_createWeightField(context),
-            const SizedBox(
-              height: 2,
-            ),
-            //_createBMI(),
-            const SizedBox(
-              height: 2,
-            ),
-            //_createWater(context),
-          ],
-        ),
-      )
-    ]);
+    int water = 0;
+
+    void incrementCounter() {
+    setState(() {
+      water++;
+    });
   }
 
-  Widget _createHeightField(BuildContext context) {
-    var value = 0;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        Text(
-          TextConstants.height,
-          style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+  void decrementCounter() {
+    setState(() {
+      water--;
+    });
+  }
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Container(
+        padding: const EdgeInsets.all(8),
+        width: 300,
+        height: 70,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10), color: Colors.black38),
+        child: Row(
+          children: [
+            Column(
+              children: [
+                const Text(
+                  TextConstants.water,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 5,),
+                Text(
+                  '$water',
+                  style: const TextStyle(
+                    fontSize: 15,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w200
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(width: 100,),
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(30),
+                onTap: incrementCounter,
+                child: const Icon(Icons.add,
+                size: 20, color: Colors.white,),
+              ),
+            ),
+            const SizedBox(width: 10,),
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(30),
+                onTap: decrementCounter,
+                child: const Icon(Icons.remove,
+                size: 20, color: Colors.white,),
+              ),
+            )
+          ],
         ),
-        Material(),
-      ],
-    );
+      ),
+    ]);
   }
 }
 
