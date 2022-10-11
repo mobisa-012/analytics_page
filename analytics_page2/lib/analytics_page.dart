@@ -35,10 +35,29 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
           const SizedBox(
             height: 30,
           ),
+          _createMetricsText(),
+          const SizedBox(
+            height: 10,
+          ),
           _createMetrics(context),
           _knowYourBMI(),
         ],
       ),
+    );
+  }
+
+  Widget _createMetricsText() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: const[
+        Text('Metrics',
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          fontStyle: FontStyle.italic,
+          color: Colors.black
+        ),)
+      ],
     );
   }
 
@@ -84,6 +103,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10), color: Colors.black38),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
               children: [
