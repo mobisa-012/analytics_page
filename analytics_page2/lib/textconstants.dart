@@ -10,4 +10,7 @@ class TextConstants {
   static const String water = 'Water';
   static const String body = 'Body';
   static const String record = 'Record';
+  static const String activityText = 'Let\'s check your activity';
+  static const String steps = 'Steps';
+  static const String save = 'Save';
 }
